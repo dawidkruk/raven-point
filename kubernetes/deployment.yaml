@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-collector
+spec:
+  selector:
+    matchLabels:
+      app: data-collector
+      version: 0.0.1
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: data-collector
+        version: 0.0.1
+    spec:
+      containers:
+      - name: data-collector
+        image: INSERT_IMAGE
+      resources:
+        requests:
+          memory: "128Mi"
+          cpu: "250m"
+        limits:
+          memory: "256Mi"
+          cpu: "500m"
