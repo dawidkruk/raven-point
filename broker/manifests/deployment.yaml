@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mosquitto-broker
+spec:
+  selector:
+    matchLabels:
+      app: mosquitto-broker
+  replicas: 1 
+  template:
+    metadata:
+      labels:
+        app: mosquitto-broker
+    spec:
+      containers:
+      - name: mosquitto-broker
+        image: eclipse-mosquitto:2.0.5
+        ports:
+        - containerPort: 1883
+          name: mosquitto-port
+          protocol: TCP 
+        livenessProbe:
+          initialDelaySeconds: 5
+          periodSeconds: 1
+          tcpSocket:
+            port: mosquitto-port
+        readinessProbe:
+          initialDelaySeconds: 5
+          periodSeconds: 1          
+          tcpSocket:
+            port: mosquitto-port
+        volumeMounts:
+        - name: mosquitto-config
+          mountPath: "/mosquitto/config/"
+          readOnly: true
+      volumes:
+      - name: mosquitto-config
+        configMap:
+          name: mosquitto-conf
