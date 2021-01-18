@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	broker = "localhost"
+	broker = "broker.hivemq.com"
 	port = 1883
 )
 
