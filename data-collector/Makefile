@@ -1,13 +1,10 @@
 .PHONY: build test clean
 
+image="data-collector"
+version=latest
+
 build:
-	CGO_ENABLED=0 GO111MODULE=on go build -o app
+	docker build -t $(imagename):$(version) . -f Dockerfile
 
-run:
-	./app
-
-test:
-	GO111MODULE=on go test ./...
-
-clean:
-	rm app
+version:
+	@echo $(imagename) $(version)
