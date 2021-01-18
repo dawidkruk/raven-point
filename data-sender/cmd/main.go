@@ -22,7 +22,9 @@ var connectLostHandler mqtt.ConnectionLostHandler = func(client mqtt.Client, err
 
 func main() {
 	// WHERE TO CONNECT TO
-	var broker = "localhost"
+
+	//var broker = "mosquitto-broker.default.svc.cluster.local"
+	var broker = "broker.hivemq.com"
 	var port = 1883
 
 	// GET THE HOSTNAME
@@ -86,4 +88,3 @@ func sub(client mqtt.Client) {
 	token.Wait()
 	fmt.Printf("Subscribed to topic: %s \n", topic)
 }
-
