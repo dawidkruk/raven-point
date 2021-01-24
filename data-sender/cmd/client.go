@@ -13,7 +13,7 @@ const (
 	// Port specifies which port to connect to MQTT broker
 	Port = 1883
 	// DelayInMs specifies how much time Publish function will wait to send another message
-	DelayInMs = 1000 // in milliseconds
+	DelayInMs = 1000
 )
 
 var connectHandler mqtt.OnConnectHandler = func(client mqtt.Client) {
