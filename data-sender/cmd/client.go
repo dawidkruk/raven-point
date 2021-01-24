@@ -8,42 +8,28 @@ import (
 )
 
 const (
-	broker = "broker.hivemq.com"
-	port   = 1883
-	delay  = 1000 // in miliseconds
+	// Broker specifies the IP address/FQDN of a MQTT broker
+	Broker = "broker.hivemq.com"
+	// Port specifies which port to connect to MQTT broker
+	Port = 1883
+	// DelayInMs specifies how much time Publish function will wait to send another message
+	DelayInMs = 1000 // in milliseconds
 )
 
-var messagePubHandler mqtt.MessageHandler = func(client mqtt.Client, msg mqtt.Message) {
-	if msg.Topic() == topic {
-		log.Infof("Received message on topic %s with content:\n%s", msg.Topic(), msg.Payload())
-	}
-}
-
 var connectHandler mqtt.OnConnectHandler = func(client mqtt.Client) {
-	fmt.Println("Connected")
+	log.Infof("Connected")
 }
 
 var connectLostHandler mqtt.ConnectionLostHandler = func(client mqtt.Client, err error) {
-	fmt.Printf("Connect lost: %v", err)
+	log.Errorf("Connection lost: %v", err)
 }
 
+// CreateMqttClient create the MQTT client with additional configuration
 func CreateMqttClient() mqtt.Client {
 	opts := mqtt.NewClientOptions()
-	opts.AddBroker(fmt.Sprintf("tcp://%s:%d", broker, port))
-	opts.SetDefaultPublishHandler(messagePubHandler)
+	opts.AddBroker(fmt.Sprintf("tcp://%s:%d", Broker, Port))
 	opts.OnConnect = connectHandler
 	opts.OnConnectionLost = connectLostHandler
 
 	return mqtt.NewClient(opts)
-}
-
-var subscribeHandler mqtt.MessageHandler = func(client mqtt.Client, message mqtt.Message) {
-	log.Infof("Topic: %s\n", message.Topic())
-	log.Info("Payload: ", string(message.Payload())) // mapped []byte to string
-}
-
-func Subscribe(client mqtt.Client, topic string) {
-	token := client.Subscribe(topic, 1, subscribeHandler)
-	token.Wait()
-	fmt.Printf("Successfully subscribed to topic: %s \n", topic)
 }

@@ -3,7 +3,8 @@ package main
 import "sync"
 
 const (
-	topic = "dawidkruk/messages"
+	// Topic specifies which topic will be used to send the message
+	Topic = "dawidkruk/messages"
 )
 
 func main() {
@@ -15,8 +16,7 @@ func main() {
 		if token := mqttClient.Connect(); token.Wait() && token.Error() != nil {
 			panic(token.Error())
 		}
-		Subscribe(mqttClient, topic)
-		Publish(mqttClient, topic)
+		Publish(mqttClient, Topic)
 	}()
 
 	wg.Wait()
