@@ -33,7 +33,7 @@ Current tasks:
 
 ---
 
-Feel free to point potential issues, report bugs and 
+Feel free to point potential issues, report bugs and contribute to this project.
 
 
 
