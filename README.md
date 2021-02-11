@@ -21,6 +21,8 @@ Description of components (where each has it's own directory):
 ### Current tasks: 
 
 * modify the whole documentation of this project to be more descriptive and informative
+* create working `POC` with `sender`, `broker`, `collector` and `influxdb` deployed on Kubernetes
+
 
 * `broker` - secure the broker (authorization and authentication of subscribers)
 * `sender` - design the payload that will be sent and start working on an embeeded device 
