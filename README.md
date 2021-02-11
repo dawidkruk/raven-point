@@ -6,6 +6,8 @@ Due to being in early alpha stages there are some shortcuts taken that will be a
 
 --- 
 
+### Components
+
 Description of components (where each has it's own directory): 
 
 * `broker` - `mosquitto` broker responsible for the communication between `sender` and `collector`
@@ -16,7 +18,7 @@ Description of components (where each has it's own directory):
 
 ---
 
-Current tasks: 
+### Current tasks: 
 
 * modify the whole documentation of this project to be more descriptive and informative
 
