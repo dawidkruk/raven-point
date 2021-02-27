@@ -19,3 +19,4 @@ Quickstart:
 
 * `$ kubectl apply -f https://raw.githubusercontent.com/influxdata/docs-v2/master/static/downloads/influxdb-k8-minikube.yaml`
 * `$ kubectl port-forward -n influxdb service/influxdb 8086:8086`
+* Go to `https://localhost:8086`
